@@ -10,10 +10,10 @@ class Satellite(SpaceEntity):
 
         if isinstance(packet,RelayPacket):
             inner_packet = packet.data 
-            print('Unwrapping and forwarding to {inner_packet.receiver}')
+            print(f'Unwrapping and forwarding to {inner_packet.receiver}')
             attempt_transmission(inner_packet)
         else:
-            print("Final destination reached: {packet.data}")
+            print(f"Final destination reached: {packet.data}")
 
 
 class Earth(SpaceEntity):
@@ -72,9 +72,6 @@ sat2 = Satellite("sat2" , 200)
 sat3 = Satellite("sat3" , 300)
 sat4 = Satellite("sat4" , 400)
 #packet = Packet("Hello from Sat1!", sat1, sat2)
-
-#p_final = Packet('Hello from Earth !!',sat1, sat2)
-#p_earth_to_sat1=RelayPacket(p_final,earth,sat1)
 
 p_final = Packet("Hello From Earth!", sat3, sat4)
 p_sat2_to_sat3 = RelayPacket(p_final, sat2, sat3)
